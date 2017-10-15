@@ -1,0 +1,17 @@
+{
+  "name": "stylesheet-decorator",
+  "version": "1.0.0",
+  "description": "easily style preact components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "k1r0s",
+  "license": "MIT",
+  "dependencies": {
+    "decamelize": "^1.2.0",
+    "kaop-ts": "^1.5.0",
+    "preact": "^8.2.5"
+  }
+}
