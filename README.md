@@ -10,7 +10,7 @@ usage:
 
 1. import
 ```javascript
-import { stylesheet } from "./stylesheet-decorator"
+import { stylesheet } from "stylesheet-decorator"
 ```
 
 2. define a string with raw CSS content
