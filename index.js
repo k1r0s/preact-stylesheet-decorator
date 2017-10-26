@@ -11,7 +11,7 @@ afterMethod((meta) => {
     meta.scope.__stylesheetTagName = decamelize(meta.target.constructor.name, "-");
 
     // remove all spaces, eols
-    styleContent = styleContent.replace(/(\r\n\s|\n|\r|\s)/gm, "");
+    styleContent = styleContent.replace(/(\r\n|\n|\r)/gm, "");
 
     // prefix all selectors to make stylesheet 'scoped' using scope-css package
     styleContent = scope(styleContent, meta.scope.__stylesheetTagName);
