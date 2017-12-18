@@ -1,6 +1,6 @@
 {
   "name": "stylesheet-decorator",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "easily style preact components",
   "main": "preactStylesheet.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "decamelize": "^1.2.0",
-    "kaop-ts": "^1.5.0",
+    "kaop-ts": "^3.1.2",
     "preact": "^8.2.5",
     "scope-css": "^1.0.4"
   },
