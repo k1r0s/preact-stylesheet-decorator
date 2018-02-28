@@ -7,28 +7,47 @@
 decamelize = decamelize && decamelize.hasOwnProperty('default') ? decamelize['default'] : decamelize;
 scope = scope && scope.hasOwnProperty('default') ? scope['default'] : scope;
 
-var stylesheet = function stylesheet(styleContent) {
+var getTag = function getTag(target) {
+  if (target.__stylesheetTagName) return target.__stylesheetTagName;
+  var uid = Math.random().toString(32).split(".").pop();
+  return target.__stylesheetTagName = "element-" + decamelize(target.name, "-") + "-" + uid;
+};
+
+var getStylesheet = function getStylesheet(target, stylesheet) {
+  if (target.__stylesheetVNode) return target.__stylesheetVNode;
+  stylesheet = stylesheet.replace(/(\r\n|\n|\r)/gm, "");
+
+  // prefix all selectors to make stylesheet 'scoped' using scope-css package
+  stylesheet = scope(stylesheet, target.__stylesheetTagName);
+
+  // save a reference of the stylesheet within the class instance
+  return target.__stylesheetVNode = preact.h("style", { scoped: true }, stylesheet);
+};
+
+var renderStylesheet = function renderStylesheet(styleContent) {
   return kaopTs.afterMethod(function (meta) {
+    var tag = getTag(meta.target.constructor);
+    var stylesheetNode = getStylesheet(meta.target.constructor, styleContent);
 
-    // create vnode stylesheet only once
-    if (!meta.target.__stylesheetVNode) {
-      var uid = Math.random().toString(32).split(".").pop();
-      var className = meta.target.constructor.name;
-      meta.target.__stylesheetTagName = "element-" + decamelize(className, "-") + "-" + uid;
-
-      // remove all spaces, eols
-      styleContent = styleContent.replace(/(\r\n|\n|\r)/gm, "");
-
-      // prefix all selectors to make stylesheet 'scoped' using scope-css package
-      styleContent = scope(styleContent, meta.target.__stylesheetTagName);
-
-      // save a reference of the stylesheet within the class instance
-      meta.target.__stylesheetVNode = preact.h("style", { scoped: true }, styleContent);
-    }
-
-    // wrap rendered vnode with another
-    meta.result = preact.h(meta.target.__stylesheetTagName, null, [meta.result, meta.target.__stylesheetVNode]);
+    // wrap rendered vnode with a hoc
+    meta.result = preact.h(tag, null, [meta.result, stylesheetNode]);
   });
+};
+
+var functionalStylesheet = function functionalStylesheet(styleContent) {
+  return function (func) {
+    var tag = getTag(func);
+    var stylesheetNode = getStylesheet(func, styleContent);
+
+    // wrap rendered vnode with a hoc
+    return function (props) {
+      return preact.h(tag, null, [func(props), stylesheetNode]);
+    };
+  };
+};
+
+var stylesheet = function stylesheet(styles, functional) {
+  return functional ? functionalStylesheet(styles)(functional) : renderStylesheet(styles);
 };
 
 exports.stylesheet = stylesheet;

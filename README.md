@@ -2,10 +2,9 @@ This decorator allows to easily style Preact components through adding a scoped 
 
 Basically it allows to style in preact like Angular or [Vue does by adding a scoped stylesheet](https://vue-loader.vuejs.org/en/features/scoped-css.html)
 
-### Example
+### Demo
 
-![preact-stylesheet-example](https://i.imgur.com/9nOCluX.jpg)
-https://gist.github.com/k1r0s/6167eab946514d6aab4b9ce6943bb443#file-my-selector-tsx-L80
+[![Edit z3p207zxml](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/z3p207zxml)
 
 ### Getting started
 
@@ -21,7 +20,7 @@ import { stylesheet } from "stylesheet-decorator"
 2. define a string with raw CSS content
 ```javascript
 const style = `
-  span { font-size: 20px }
+  span { font-size: 20px; color: lightblue; }
 `
 ```
 3. Plug it on render fn of some Preact component
@@ -33,6 +32,9 @@ render() {
   return <span>something</span>
 }
 
+or
+
+stylesheet(style, props => <span>something</span>)
 ```
 That's all.
 

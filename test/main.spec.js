@@ -5,24 +5,27 @@ const decorate = (target, css) => {
 }
 const scrap = document.createElement("section")
 
-class TestComponent extends Component {
+const style = `
+  span { color: red }
+`
 
-  render() {
-    return h(
-      "div",
-      null,
-      h(
-        "span",
-        null,
-        "some test"
-      )
-    )
-  }
+const hscript = () => h(
+  "div",
+  null,
+  h(
+    "span",
+    null,
+    "some test"
+  )
+)
+
+class TestComponent extends Component {
+ render() { return hscript() }
 }
 
-decorate(TestComponent, `
-  span { color: red }
-`)
+decorate(TestComponent, style)
+
+const FunctionalComp = stylesheet(style, props => hscript())
 
 describe("test several rules regarding stylesheet rendering", () => {
 
@@ -30,15 +33,12 @@ describe("test several rules regarding stylesheet rendering", () => {
 
   it("should render stylesheet component before main content", () => {
     render(h(TestComponent, null, "stuff"), scrap)
-    console.log(scrap.innerHTML)
     expect(scrap.innerHTML).toContain("span { color: red }")
     expect(scrap.innerHTML).toContain("style scoped")
   })
-  // it("should render two components containing two style elements", () => {
-  //   render(h("div", null, [
-  //     h(TestComponent, null),
-  //     h(TestComponent, null)
-  //   ]), scrap)
-  //   console.log(scrap.innerHTML)
-  // })
+  it("should render a functional component", () => {
+    render(h(FunctionalComp, null, "stuff"), scrap)
+    expect(scrap.innerHTML).toContain("span { color: red }")
+    expect(scrap.innerHTML).toContain("style scoped")
+  })
 })
