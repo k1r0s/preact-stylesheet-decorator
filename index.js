@@ -21,7 +21,7 @@ const getStylesheet = (target, stylesheet) => {
   return target.__stylesheetVNode = h("style", { scoped: true }, stylesheet);
 }
 
-export const renderStylesheet = styleContent => afterMethod((meta) => {
+const renderStylesheet = styleContent => afterMethod((meta) => {
   const tag = getTag(meta.target.constructor);
   const stylesheetNode = getStylesheet(meta.target.constructor, styleContent);
 
@@ -29,10 +29,12 @@ export const renderStylesheet = styleContent => afterMethod((meta) => {
   meta.result = h(tag, null, [ meta.result, stylesheetNode ]);
 });
 
-export const functionalStylesheet = styleContent => func => {
+const functionalStylesheet = styleContent => func => {
   const tag = getTag(func);
   const stylesheetNode = getStylesheet(func, styleContent);
 
   // wrap rendered vnode with a hoc
   return props => h(tag, null, [ func(props), stylesheetNode ]);
 };
+
+export const stylesheet = (styles, functional) => functional ? functionalStylesheet(styles)(functional) : renderStylesheet(styles);

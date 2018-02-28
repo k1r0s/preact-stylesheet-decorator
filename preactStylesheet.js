@@ -46,8 +46,11 @@ var functionalStylesheet = function functionalStylesheet(styleContent) {
   };
 };
 
-exports.renderStylesheet = renderStylesheet;
-exports.functionalStylesheet = functionalStylesheet;
+var stylesheet = function stylesheet(styles, functional) {
+  return functional ? functionalStylesheet(styles)(functional) : renderStylesheet(styles);
+};
+
+exports.stylesheet = stylesheet;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

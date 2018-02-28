@@ -21,7 +21,7 @@ import { stylesheet } from "stylesheet-decorator"
 2. define a string with raw CSS content
 ```javascript
 const style = `
-  span { font-size: 20px }
+  span { font-size: 20px; color: lightblue; }
 `
 ```
 3. Plug it on render fn of some Preact component
@@ -33,6 +33,9 @@ render() {
   return <span>something</span>
 }
 
+or
+
+stylesheet(style, props => <span>something</span>)
 ```
 That's all.
 
