@@ -1,11 +1,14 @@
 {
   "name": "stylesheet-decorator",
   "version": "1.5.0",
-  "description": "easily style preact components",
-  "main": "preactStylesheet.js",
+  "description": "easily style react/preact components",
+  "main": "dist/preact-stylesheet-decorator.js",
+  "module": "dist/preact-stylesheet-decorator.es.js",
   "scripts": {
     "test": "jest",
-    "build": "rollup -c rollup.config.js"
+    "build": "npm run build:react ; npm run build:preact",
+    "build:react": "rollup -c rollup.react.js",
+    "build:preact": "rollup -c rollup.preact.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +20,11 @@
   "dependencies": {
     "decamelize": "^1.2.0",
     "kaop-ts": "^3.1.2",
-    "preact": "^8.2.5",
     "scope-css": "^1.0.4"
+  },
+  "peerDependencies": {
+    "preact": "^8.2.5",
+    "react": "^16.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

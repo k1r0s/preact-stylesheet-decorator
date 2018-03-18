@@ -1,8 +1,8 @@
-This decorator allows to easily style Preact components through adding a scoped stylesheet inside that component and defined styles only get applied to it and its descendants.
+This decorator allows to easily style Preact/React (since 1.6.\*) components through adding a scoped stylesheet inside that component and defined styles only get applied to it and its descendants.
 
-Basically it allows to style in preact like Angular or [Vue does by adding a scoped stylesheet](https://vue-loader.vuejs.org/en/features/scoped-css.html)
+Basically it allows to style preact/react like Angular or [Vue does by adding a scoped stylesheet](https://vue-loader.vuejs.org/en/features/scoped-css.html)
 
-### Demo
+### Demo (Preact)
 
 [![Edit z3p207zxml](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/z3p207zxml)
 
@@ -14,7 +14,8 @@ usage:
 
 1. import
 ```javascript
-import { stylesheet } from "stylesheet-decorator"
+import { stylesheet } from "stylesheet-decorator[/preact]"
+import { stylesheet } from "stylesheet-decorator/react"
 ```
 
 2. define a string with raw CSS content
@@ -23,7 +24,7 @@ const style = `
   span { font-size: 20px; color: lightblue; }
 `
 ```
-3. Plug it on render fn of some Preact component
+3. Plug it on render fn of some Preact/React component
 
 ```javascript
 
