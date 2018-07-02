@@ -1,7 +1,12 @@
-import React from 'react';
-import { afterMethod } from 'kaop-ts';
-import decamelize from 'decamelize';
-import scope from 'scope-css';
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('kaop-ts'), require('decamelize'), require('scope-css')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'react', 'kaop-ts', 'decamelize', 'scope-css'], factory) :
+	(factory((global.reactStylesheet = {}),global.React,global.kaopTs,global.decamelize,global.scope));
+}(this, (function (exports,React,kaopTs,decamelize,scope) { 'use strict';
+
+React = React && React.hasOwnProperty('default') ? React['default'] : React;
+decamelize = decamelize && decamelize.hasOwnProperty('default') ? decamelize['default'] : decamelize;
+scope = scope && scope.hasOwnProperty('default') ? scope['default'] : scope;
 
 var getTag = function getTag(target) {
   if (target.__stylesheetTagName) return target.__stylesheetTagName;
@@ -25,7 +30,7 @@ var getStylesheet = function getStylesheet(target, stylesheet) {
 };
 
 var renderStylesheet = function renderStylesheet(styleContent) {
-  return afterMethod(function (meta) {
+  return kaopTs.afterMethod(function (meta) {
     var tag = getTag(meta.target.constructor);
     var stylesheetNode = getStylesheet(meta.target.constructor, styleContent);
 
@@ -52,4 +57,8 @@ var stylesheet = function stylesheet(styles, functional) {
   return functional ? functionalStylesheet(styles)(functional) : renderStylesheet(styles);
 };
 
-export { stylesheet };
+exports.stylesheet = stylesheet;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));

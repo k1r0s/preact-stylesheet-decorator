@@ -5,7 +5,7 @@ export default {
   output: [
 		{ file: 'dist/preact-stylesheet-decorator.js', name: 'preactStylesheet', format: 'umd' },
 		{ file: 'dist/preact-stylesheet-decorator.es.js', format: 'es' },
-    { file: 'preact.js', format: 'es' }
+    { file: 'preact.js', name: 'preactStylesheet', format: 'umd' }
   ],
   plugins: common
 }

@@ -5,7 +5,7 @@ export default {
   output: [
 		{ file: 'dist/react-stylesheet-decorator.js', name: 'reactStylesheet', format: 'umd' },
 		{ file: 'dist/react-stylesheet-decorator.es.js', format: 'es' },
-    { file: 'react.js', format: 'es' }
+    { file: 'react.js', name: 'reactStylesheet', format: 'umd' }
   ],
   plugins: common
 }
