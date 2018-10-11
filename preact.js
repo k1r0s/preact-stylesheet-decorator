@@ -1,16 +1,15 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('preact'), require('kaop-ts'), require('decamelize'), require('scope-css')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'preact', 'kaop-ts', 'decamelize', 'scope-css'], factory) :
-	(factory((global.preactStylesheet = {}),global.preact,global.kaopTs,global.decamelize,global.scope));
-}(this, (function (exports,preact,kaopTs,decamelize,scope) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('preact'), require('kaop-ts'), require('scope-css')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'preact', 'kaop-ts', 'scope-css'], factory) :
+	(factory((global.preactStylesheet = {}),global.preact,global.kaopTs,global.scope));
+}(this, (function (exports,preact,kaopTs,scope) { 'use strict';
 
-decamelize = decamelize && decamelize.hasOwnProperty('default') ? decamelize['default'] : decamelize;
 scope = scope && scope.hasOwnProperty('default') ? scope['default'] : scope;
 
 var getTag = function getTag(target) {
   if (target.__stylesheetTagName) return target.__stylesheetTagName;
   var uid = Math.random().toString(32).split(".").pop();
-  return target.__stylesheetTagName = "element-" + decamelize(target.name, "-") + "-" + uid;
+  return target.__stylesheetTagName = "element-" + uid;
 };
 
 var getStylesheet = function getStylesheet(target, stylesheet) {

@@ -18,8 +18,8 @@
   "author": "k1r0s",
   "license": "MIT",
   "dependencies": {
-    "decamelize": "^1.2.0",
     "kaop-ts": "^3.1.2",
+    "preact": "^8.3.1",
     "scope-css": "^1.0.4"
   },
   "peerDependencies": {

@@ -1,12 +1,11 @@
 import { h } from 'preact';
 import { afterMethod } from 'kaop-ts';
-import decamelize from 'decamelize';
 import scope from 'scope-css';
 
 var getTag = function getTag(target) {
   if (target.__stylesheetTagName) return target.__stylesheetTagName;
   var uid = Math.random().toString(32).split(".").pop();
-  return target.__stylesheetTagName = "element-" + decamelize(target.name, "-") + "-" + uid;
+  return target.__stylesheetTagName = "element-" + uid;
 };
 
 var getStylesheet = function getStylesheet(target, stylesheet) {

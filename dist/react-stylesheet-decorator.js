@@ -1,17 +1,16 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('kaop-ts'), require('decamelize'), require('scope-css')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'react', 'kaop-ts', 'decamelize', 'scope-css'], factory) :
-	(factory((global.reactStylesheet = {}),global.React,global.kaopTs,global.decamelize,global.scope));
-}(this, (function (exports,React,kaopTs,decamelize,scope) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('kaop-ts'), require('scope-css')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'react', 'kaop-ts', 'scope-css'], factory) :
+	(factory((global.reactStylesheet = {}),global.React,global.kaopTs,global.scope));
+}(this, (function (exports,React,kaopTs,scope) { 'use strict';
 
 React = React && React.hasOwnProperty('default') ? React['default'] : React;
-decamelize = decamelize && decamelize.hasOwnProperty('default') ? decamelize['default'] : decamelize;
 scope = scope && scope.hasOwnProperty('default') ? scope['default'] : scope;
 
 var getTag = function getTag(target) {
   if (target.__stylesheetTagName) return target.__stylesheetTagName;
   var uid = Math.random().toString(32).split(".").pop();
-  return target.__stylesheetTagName = "element-" + decamelize(target.name, "-") + "-" + uid;
+  return target.__stylesheetTagName = "element-" + uid;
 };
 
 var getProps = function getProps(props) {

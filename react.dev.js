@@ -1,12 +1,11 @@
 import React from "react"
 import { afterMethod } from "kaop-ts";
-import decamelize from "decamelize";
 import scope from "scope-css";
 
 const getTag = target => {
   if(target.__stylesheetTagName) return target.__stylesheetTagName;
   const uid = Math.random().toString(32).split(".").pop();
-  return target.__stylesheetTagName = `element-${decamelize(target.name, "-")}-${uid}`;
+  return target.__stylesheetTagName = `element-${uid}`;
 }
 
 const getProps = props => Object.assign({}, props, { key: "component" });
