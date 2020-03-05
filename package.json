@@ -1,6 +1,6 @@
 {
   "name": "stylesheet-decorator",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "easily style react/preact components",
   "main": "dist/preact-stylesheet-decorator.js",
   "module": "dist/preact-stylesheet-decorator.es.js",
