@@ -25,6 +25,7 @@ var getStylesheet = function getStylesheet(target, stylesheet) {
 
 var renderStylesheet = function renderStylesheet(styleContent) {
   return kaopTs.afterMethod(function (meta) {
+    if (meta.exception) throw meta.exception;
     var tag = getTag(meta.target.constructor);
     var stylesheetNode = getStylesheet(meta.target.constructor, styleContent);
 

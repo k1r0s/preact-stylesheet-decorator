@@ -21,6 +21,7 @@ const getStylesheet = (target, stylesheet) => {
 }
 
 const renderStylesheet = styleContent => afterMethod((meta) => {
+  if(meta.exception) throw meta.exception;
   const tag = getTag(meta.target.constructor);
   const stylesheetNode = getStylesheet(meta.target.constructor, styleContent);
 
